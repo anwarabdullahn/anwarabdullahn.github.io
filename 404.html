@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redirecting...</title>
+    <script>
+      // Simple redirect for GitHub Pages with Vue Router
+      const path = window.location.pathname
+
+      // For user/organization sites, redirect to root with path as query parameter
+      window.location.replace('/?redirect=' + encodeURIComponent(path))
+    </script>
+  </head>
+  <body>
+    <p>Redirecting to the main page...</p>
+  </body>
+</html>
