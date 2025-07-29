@@ -1,7 +1,3 @@
-# Anwar Abdullah's Portfolio
-
-A modern portfolio website built with Next.js, TypeScript, and Tailwind CSS, automatically deployed to GitHub Pages using GitHub Actions.
-
 ## 🚀 Features
 
 - **Next.js 15** with App Router
