@@ -1,3 +1,5 @@
+import Demo from '@/components/demo';
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
@@ -25,8 +27,13 @@ export default function Home() {
         </div>
       </header>
 
-      {/* Hero Section */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      {/* Demo Section */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <Demo />
+      </main>
+
+      {/* Original Hero Section */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="text-center">
           <h2 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
             Welcome to My
@@ -84,7 +91,7 @@ export default function Home() {
             <p className="text-gray-600 dark:text-gray-300">Fully responsive design with Tailwind CSS and dark mode support.</p>
           </div>
         </div>
-      </main>
+      </section>
 
       {/* Footer */}
       <footer className="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
