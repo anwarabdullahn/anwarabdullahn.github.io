@@ -29,6 +29,251 @@
  * Sekarang font rendering akan 100% identik dengan original
  */
 
+/* Ensure video play button positioning is correct - EXACT match with original */
+.elisc_tm_video {
+  position: relative !important;
+}
+
+.elisc_tm_video .play {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  z-index: 2 !important;
+  width: 111px !important;
+  height: 111px !important;
+  background-color: #fff !important;
+  border-radius: 100% !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+}
+
+.elisc_tm_video .play:hover {
+  transform: translate(-50%, -50%) scale(1.1) !important;
+}
+
+/* Play button with perfect flexbox centering */
+.elisc_tm_video .play {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  z-index: 2 !important;
+  width: 111px !important;
+  height: 111px !important;
+  background-color: #fff !important;
+  border-radius: 100% !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* SVG icon - simplified positioning using flexbox parent */
+.elisc_tm_video .play .svg,
+.elisc_tm_video .play img.svg {
+  width: 18px !important;
+  height: 18px !important;
+  margin: 0 !important;
+  position: relative !important;
+  flex-shrink: 0 !important;
+}
+
+/* Portfolio section fixes for proper owl-carousel behavior - EXACT match with original */
+.elisc_tm_portfolio_title {
+  width: 100% !important;
+  float: left !important;
+  display: flex !important;
+  align-items: flex-end !important;
+  justify-content: space-between !important;
+  margin-bottom: 70px !important;
+}
+
+.elisc_tm_portfolio_title .elisc_tm_title {
+  width: auto !important;
+}
+
+.elisc_tm_portfolio_title .buttons {
+  display: flex !important;
+  align-items: center !important;
+}
+
+/* Navigation buttons with perfect flexbox centering */
+.elisc_tm_portfolio_title .buttons a {
+  width: 49px !important;
+  height: 49px !important;
+  border-radius: 100% !important;
+  border: 1px solid #130F49 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-right: 12px !important;
+  position: relative !important;
+  background-color: transparent !important;
+  transition: all 0.3s ease !important;
+  text-decoration: none !important;
+}
+
+.elisc_tm_portfolio_title .buttons a:hover {
+  background-color: #130F49 !important;
+}
+
+.elisc_tm_portfolio_title .buttons a:last-child {
+  margin-right: 0px !important;
+}
+
+/* SVG icons - simplified positioning using flexbox parent */
+.elisc_tm_portfolio_title .buttons .svg,
+.elisc_tm_portfolio_title .buttons img.svg {
+  width: 9px !important;
+  height: 9px !important;
+  color: #130F49 !important;
+  transition: all 0.3s ease !important;
+  position: relative !important;
+  margin: 0 !important;
+  flex-shrink: 0 !important;
+}
+
+.elisc_tm_portfolio_title .buttons a:hover .svg,
+.elisc_tm_portfolio_title .buttons a:hover img.svg {
+  color: #fff !important;
+}
+
+.elisc_tm_portfolio .portfolio_list {
+  width: 100% !important;
+  float: left !important;
+}
+
+/* Carousel container showing items dynamically via JavaScript */
+.elisc_tm_portfolio .portfolio_list ul.owl-carousel {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 30px !important;
+  transition: all 0.5s ease !important;
+  position: relative !important;
+}
+
+/* All items start hidden - JavaScript will show appropriate ones */
+.elisc_tm_portfolio .portfolio_list ul.owl-carousel li {
+  display: none !important;
+  transition: all 0.3s ease !important;
+}
+
+/* When items are shown by JavaScript */
+.elisc_tm_portfolio .portfolio_list ul.owl-carousel li[style*="block"] {
+  display: block !important;
+  opacity: 1 !important;
+  animation: fadeInUp 0.3s ease !important;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Portfolio item styling */
+.elisc_tm_portfolio .portfolio_list .list_inner {
+  width: 100% !important;
+  position: relative !important;
+}
+
+.elisc_tm_portfolio .portfolio_list .image {
+  position: relative !important;
+  margin-bottom: 25px !important;
+  overflow: hidden !important;
+  border-radius: 4px !important;
+}
+
+.elisc_tm_portfolio .portfolio_list .image img {
+  width: 100% !important;
+  height: auto !important;
+  opacity: 0 !important; /* Hide placeholder, show background image */
+}
+
+.elisc_tm_portfolio .portfolio_list .image .main {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  background-position: center !important;
+  transition: transform 0.3s ease !important;
+}
+
+.elisc_tm_portfolio .portfolio_list .image:hover .main {
+  transform: scale(1.05) !important;
+}
+
+/* Details styling */
+.elisc_tm_portfolio .portfolio_list .details .category a {
+  display: inline-block !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  color: var(--main-color) !important;
+  margin-bottom: 7px !important;
+}
+
+.elisc_tm_portfolio .portfolio_list .details .title a {
+  font-size: 24px !important;
+  font-weight: 600 !important;
+  line-height: 1.3 !important;
+  color: var(--dark-color) !important;
+}
+
+/* Responsive layout - JavaScript handles item visibility */
+@media (max-width: 1040px) {
+  .elisc_tm_portfolio .portfolio_list ul.owl-carousel {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  
+  /* Video play button responsive - tablet */
+  .elisc_tm_video .play {
+    width: 100px !important;
+    height: 100px !important;
+  }
+  
+  .elisc_tm_video .play .svg,
+  .elisc_tm_video .play img.svg {
+    width: 16px !important;
+    height: 16px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .elisc_tm_portfolio .portfolio_list ul.owl-carousel {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .elisc_tm_portfolio_title {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 20px !important;
+  }
+  
+  /* Video play button responsive - mobile */
+  .elisc_tm_video .play {
+    width: 45px !important;
+    height: 45px !important;
+  }
+  
+  .elisc_tm_video .play .svg,
+  .elisc_tm_video .play img.svg {
+    width: 13px !important;
+    height: 13px !important;
+  }
+}
+
 /* Layout fixes yang diperlukan untuk Next.js */
 .elisc_tm_mainpart {
   padding-left: 370px !important;
@@ -95,4 +340,198 @@
   background: none !important;
   height: 375px;
   width: 100%;
+}
+
+/* Section visibility fixes */
+.elisc_tm_section {
+  width: 100% !important;
+  height: auto !important;
+  clear: both !important;
+  float: left !important;
+  position: relative !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  z-index: 1 !important;
+}
+
+.elisc_tm_section.active {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.elisc_tm_section.hidden {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+/* Main content visibility fixes */
+.elisc_tm_mainpart {
+  width: 100% !important;
+  height: 100% !important;
+  float: left !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.elisc_tm_mainpart .mainpart_inner {
+  width: 100% !important;
+  height: auto !important;
+  clear: both !important;
+  float: left !important;
+  position: relative !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.tm_content {
+  width: 100% !important;
+  max-width: 1250px !important;
+  height: auto !important;
+  clear: both !important;
+  float: none !important;
+  display: block !important;
+  position: relative !important;
+  margin: 0px auto !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Blog section fixes */
+.elisc_tm_news {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: 100% !important;
+  float: left !important;
+  padding: 120px 0px !important;
+}
+
+.elisc_tm_news .wrapper {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: space-between !important;
+}
+
+.elisc_tm_news .left {
+  width: 33.3333% !important;
+  padding-right: 50px !important;
+}
+
+.elisc_tm_news .right {
+  width: 66.6666% !important;
+  padding-left: 50px !important;
+}
+
+.elisc_tm_news .list {
+  width: 100% !important;
+  float: left !important;
+  position: relative !important;
+}
+
+.elisc_tm_news .list ul {
+  margin: 0px !important;
+}
+
+.elisc_tm_news .list ul li {
+  margin: 0px 0px 40px 0px !important;
+  width: 100% !important;
+  float: left !important;
+}
+
+.elisc_tm_news .list ul li .list_inner {
+  width: 100% !important;
+  float: left !important;
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+.elisc_tm_news .list .info {
+  width: 50% !important;
+}
+
+.elisc_tm_news .list .meta {
+  width: 100% !important;
+  float: left !important;
+  display: flex !important;
+  align-items: center !important;
+  margin-bottom: 12px !important;
+}
+
+.elisc_tm_news .list .meta .svg {
+  width: 18px !important;
+  height: 18px !important;
+}
+
+.elisc_tm_news .list .meta span {
+  font-weight: 500 !important;
+  padding-left: 8px !important;
+}
+
+.elisc_tm_news .list .title {
+  width: 100% !important;
+  float: left !important;
+}
+
+.elisc_tm_news .list .title h3 {
+  color: #130F49 !important;
+  font-size: 28px !important;
+  font-weight: 600 !important;
+  line-height: 36px !important;
+}
+
+.elisc_tm_news .list .title a {
+  color: #130F49 !important;
+  background-image: linear-gradient(currentColor, currentColor) !important;
+  background-position: 0% 100% !important;
+  background-repeat: no-repeat !important;
+  background-size: 0% 1.5px !important;
+  transition: background-size .5s !important;
+}
+
+.elisc_tm_news .list .title a:hover {
+  background-size: 100% 1.5px !important;
+}
+
+.elisc_tm_news .list .elisc_tm_read_more {
+  width: auto !important;
+}
+
+.elisc_tm_news .list .elisc_tm_read_more a {
+  color: #130F49 !important;
+  text-decoration: none !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.elisc_tm_news .list .elisc_tm_read_more span {
+  margin-left: 8px !important;
+}
+
+.elisc_tm_news .list .elisc_tm_read_more .svg {
+  width: 18px !important;
+  height: 18px !important;
+}
+
+/* Hide popup images in blog section */
+.elisc_tm_news .popup_image {
+  display: none !important;
+  opacity: 0 !important;
+  position: absolute !important;
+  z-index: -11 !important;
+}
+
+/* Hide news hidden details */
+.elisc_tm_news .news_hidden_details {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  position: absolute !important;
+  z-index: -11 !important;
 }

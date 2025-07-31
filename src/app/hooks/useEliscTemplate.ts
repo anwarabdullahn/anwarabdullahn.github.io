@@ -24,6 +24,14 @@ export const useEliscTemplate = () => {
           preloader.remove();
         }, 1200);
       }
+
+      // Initialize section visibility
+      const sections = document.querySelectorAll('.elisc_tm_section');
+      sections.forEach(section => {
+        section.classList.remove('hidden');
+        section.classList.remove('active');
+        section.classList.add('active');
+      });
     }, 800);
 
     return () => clearTimeout(timer);
@@ -150,11 +158,13 @@ export const useEliscTemplate = () => {
                 const descriptions = descWrap.querySelector('.descriptions');
                 if (descriptions) {
                   descriptions.insertAdjacentHTML('afterbegin', 
-                    `<div class="top_image"><img src="img/thumbs/4-2.jpg" alt="" /><div class="main" data-img-url="${elImage}"></div></div>`
+                    `<div class="top_image"><img src="/assets/images/thumbs/4-2.jpg" alt="" /><div class="main" data-img-url="${elImage}"></div></div>`
                   );
                   descriptions.insertAdjacentHTML('afterbegin',
                     `<div class="infos"><div class="year"><span>${year}</span></div><div class="job"><span>${place}</span><h3>${job}</h3></div></div>`
                   );
+                  // Call dataImages to process the new content
+                  dataImages();
                 }
               }
             }
@@ -197,11 +207,13 @@ export const useEliscTemplate = () => {
                 const descriptions = descWrap.querySelector('.descriptions');
                 if (descriptions) {
                   descriptions.insertAdjacentHTML('afterbegin', 
-                    `<div class="top_image"><img src="img/thumbs/4-2.jpg" alt="" /><div class="main" data-img-url="${elImage}"></div></div>`
+                    `<div class="top_image"><img src="/assets/images/thumbs/4-2.jpg" alt="" /><div class="main" data-img-url="${elImage}"></div></div>`
                   );
                   descriptions.insertAdjacentHTML('afterbegin',
                     `<div class="main_title"><h3>${title}</h3></div>`
                   );
+                  // Call dataImages to process the new content
+                  dataImages();
                 }
               }
             }
@@ -238,11 +250,13 @@ export const useEliscTemplate = () => {
                 const popupDetails = descWrap.querySelector('.popup_details');
                 if (popupDetails) {
                   popupDetails.insertAdjacentHTML('afterbegin', 
-                    `<div class="top_image"><img src="img/thumbs/4-2.jpg" alt="" /><div class="main" data-img-url="${image}"></div></div>`
+                    `<div class="top_image"><img src="/assets/images/thumbs/4-2.jpg" alt="" /><div class="main" data-img-url="${image}"></div></div>`
                   );
                   popupDetails.insertAdjacentHTML('afterbegin',
                     `<div class="portfolio_main_title"><span class="category">${categoryText}</span><h3 class="title">${title}</h3></div>`
                   );
+                  // Call dataImages to process the new content
+                  dataImages();
                 }
               }
             }
@@ -279,11 +293,13 @@ export const useEliscTemplate = () => {
                 const newsInfo = descWrap.querySelector('.news_popup_informations');
                 if (newsInfo) {
                   newsInfo.insertAdjacentHTML('afterbegin', 
-                    `<div class="image"><img src="img/thumbs/4-2.jpg" alt="" /><div class="main" data-img-url="${image}"></div></div>`
+                    `<div class="image"><img src="/assets/images/thumbs/4-2.jpg" alt="" /><div class="main" data-img-url="${image}"></div></div>`
                   );
                   newsInfo.insertAdjacentHTML('afterbegin',
                     `<div class="details"><div class="meta">${metaText}</div><div class="title"><h3>${title}</h3></div></div>`
                   );
+                  // Call dataImages to process the new content
+                  dataImages();
                 }
               }
             }
@@ -1111,6 +1127,14 @@ export const useEliscTemplate = () => {
 
   const handleSectionChange = (sectionId: string) => {
     setActiveSection(sectionId);
+    
+    // Show all sections first
+    const sections = document.querySelectorAll('.elisc_tm_section');
+    sections.forEach(section => {
+      section.classList.remove('hidden');
+      section.classList.remove('active');
+      section.classList.add('active');
+    });
     setMobileMenuOpen(false);
     
     // Add animation classes

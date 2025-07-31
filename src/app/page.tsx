@@ -1,9 +1,90 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { useEliscTemplate } from './hooks/useEliscTemplate';
 
 export default function Home() {
   const { activeSection, mobileMenuOpen, isLoaded, handleSectionChange, toggleMobileMenu } = useEliscTemplate();
+  const [portfolioPage, setPortfolioPage] = useState(0);
+
+  // Portfolio carousel pagination functionality
+  useEffect(() => {
+    const handlePortfolioPagination = () => {
+      const portfolioItems = document.querySelectorAll('#portfolio-carousel li');
+      const isMobile = window.innerWidth <= 768;
+      const isTablet = window.innerWidth <= 1040 && window.innerWidth > 768;
+      
+      let itemsPerPage = 3; // Desktop: 3 items
+      if (isMobile) itemsPerPage = 1; // Mobile: 1 item
+      else if (isTablet) itemsPerPage = 2; // Tablet: 2 items
+      
+      const totalPages = Math.ceil(portfolioItems.length / itemsPerPage);
+      const currentPage = Math.min(portfolioPage, totalPages - 1);
+      
+      // Hide all items first
+      portfolioItems.forEach((item) => {
+        const htmlItem = item as HTMLElement;
+        htmlItem.style.display = 'none';
+      });
+      
+      // Show items for current page
+      const startIndex = currentPage * itemsPerPage;
+      const endIndex = Math.min(startIndex + itemsPerPage, portfolioItems.length);
+      
+      for (let i = startIndex; i < endIndex; i++) {
+        const item = portfolioItems[i] as HTMLElement;
+        if (item) {
+          item.style.display = 'block';
+        }
+      }
+    };
+
+    const prevButton = document.querySelector('.elisc_tm_portfolio .prev_button');
+    const nextButton = document.querySelector('.elisc_tm_portfolio .next_button');
+    
+    const handlePrev = (e: Event) => {
+      e.preventDefault();
+      setPortfolioPage(prev => Math.max(0, prev - 1));
+    };
+    
+    const handleNext = (e: Event) => {
+      e.preventDefault();
+      const isMobile = window.innerWidth <= 768;
+      const isTablet = window.innerWidth <= 1040 && window.innerWidth > 768;
+      let itemsPerPage = 3;
+      if (isMobile) itemsPerPage = 1;
+      else if (isTablet) itemsPerPage = 2;
+      
+      const totalItems = 4; // We have 4 portfolio items
+      const totalPages = Math.ceil(totalItems / itemsPerPage);
+      setPortfolioPage(prev => Math.min(totalPages - 1, prev + 1));
+    };
+    
+    if (prevButton && nextButton) {
+      prevButton.addEventListener('click', handlePrev);
+      nextButton.addEventListener('click', handleNext);
+    }
+    
+    // Handle resize for responsive behavior
+    const handleResize = () => {
+      handlePortfolioPagination();
+    };
+    
+    // Initial setup and pagination
+    setTimeout(() => {
+      handlePortfolioPagination();
+    }, 100); // Small delay to ensure DOM is ready
+    
+    window.addEventListener('resize', handleResize);
+    
+    return () => {
+      if (prevButton && nextButton) {
+        prevButton.removeEventListener('click', handlePrev);
+        nextButton.removeEventListener('click', handleNext);
+      }
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [portfolioPage]);
 
   return (
     <>
@@ -515,9 +596,7 @@ export default function Home() {
                       <img className="placeholder" src="/assets/images/thumbs/4-2.jpg" alt="" />
                       <div className="image" data-img-url="/assets/images/service/1.jpg"></div>
                       <div className="overlay"></div>
-                      <span className="play" onClick={() => window.open('https://www.youtube.com/watch?v=7e90gBu4pas', '_blank')}>
-                        <img className="svg" src="/assets/images/svg/play.svg" alt="" />
-                      </span>
+                      <span className="play"><img className="svg" src="/assets/images/svg/play.svg" alt="" /></span>
                       <div className="text">
                         <h3>Intro Video</h3>
                       </div>
@@ -531,147 +610,140 @@ export default function Home() {
               <div className="elisc_tm_section" id="portfolio">
                 <div className="elisc_tm_portfolio">
                   <div className="tm_content">
-                    <div className="elisc_tm_title">
-                      <span>- Portfolio</span>
-                      <h3>My Works</h3>
+                    <div className="elisc_tm_portfolio_title">
+                      <div className="elisc_tm_title">
+                        <span>- Projects</span>
+                        <h3>Recent completed works</h3>
+                      </div>
+                      <div className="buttons">
+                        <a className="prev_button" href="#"><img className="svg" src="/assets/images/svg/prev.svg" alt="" /></a>
+                        <a className="next_button" href="#"><img className="svg" src="/assets/images/svg/next.svg" alt="" /></a>
+                      </div>
                     </div>
-                    <div className="portfolio_filter">
-                      <ul>
-                        <li><a href="#" className="current" data-filter="*">All</a></li>
-                        <li><a href="#" data-filter=".youtube">Youtube</a></li>
-                        <li><a href="#" data-filter=".vimeo">Vimeo</a></li>
-                        <li><a href="#" data-filter=".soundcloud">Soundcloud</a></li>
-                        <li><a href="#" data-filter=".modalbox">Modalbox</a></li>
-                      </ul>
-                    </div>
-                   <div className="portfolio_list">
-                     <ul className="gallery_zoom">
-                       <li className="youtube">
-                         <div className="list_inner">
-                           <div className="image">
-                             <img src="/assets/images/thumbs/1-1.jpg" alt="" />
+                    <div className="portfolio_list">
+                      <ul className="owl-carousel gallery_zoom" id="portfolio-carousel">
+                        <li>
+                          <div className="list_inner">
+                            <div className="image">
+                              <img src="/assets/images/thumbs/31-36.jpg" alt="" />
                               <div className="main" data-img-url="/assets/images/portfolio/1.jpg"></div>
-                           </div>
-                           <div className="overlay"></div>
-                           <img className="svg" src="/assets/images/svg/youtube.svg" alt="" />
-                           <div className="details">
-                             <span>Youtube</span>
-                             <h3>Aumeo Audio</h3>
-                           </div>
-                           <a className="elisc_tm_full_link youtube" href="https://www.youtube.com/watch?v=7e90gBu4pas"></a>
-                         </div>
-                       </li>
-                       <li className="vimeo">
-                         <div className="list_inner">
-                           <div className="image">
-                             <img src="/assets/images/thumbs/1-1.jpg" alt="" />
+                              <a className="elisc_tm_full_link popup-youtube" href="https://www.youtube.com/watch?v=7e90gBu4pas"></a>
+                            </div>
+                            <div className="details">
+                              <span className="category"><a href="#">Youtube</a></span>
+                              <h3 className="title"><a className="line_effect popup-youtube" href="https://www.youtube.com/watch?v=7e90gBu4pas">New Technology</a></h3>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div className="list_inner">
+                            <div className="image">
+                              <img src="/assets/images/thumbs/31-36.jpg" alt="" />
                               <div className="main" data-img-url="/assets/images/portfolio/2.jpg"></div>
-                           </div>
-                           <div className="overlay"></div>
-                           <img className="svg" src="/assets/images/svg/vimeo.svg" alt="" />
-                           <div className="details">
-                             <span>Vimeo</span>
-                             <h3>Bicker & Jenna</h3>
-                           </div>
-                           <a className="elisc_tm_full_link vimeo" href="https://vimeo.com/337293658"></a>
-                         </div>
-                       </li>
-                       <li className="soundcloud">
-                         <div className="list_inner">
-                           <div className="image">
-                             <img src="/assets/images/thumbs/1-1.jpg" alt="" />
+                              <a className="elisc_tm_full_link popup-vimeo" href="https://vimeo.com/337293658"></a>
+                            </div>
+                            <div className="details">
+                              <span className="category"><a href="#">Vimeo</a></span>
+                              <h3 className="title"><a className="line_effect popup-vimeo" href="https://vimeo.com/337293658">Firogo Majestic Ltd.</a></h3>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div className="list_inner">
+                            <div className="image">
+                              <img src="/assets/images/thumbs/31-36.jpg" alt="" />
                               <div className="main" data-img-url="/assets/images/portfolio/3.jpg"></div>
-                           </div>
-                           <div className="overlay"></div>
-                           <img className="svg" src="/assets/images/svg/soundcloud.svg" alt="" />
-                           <div className="details">
-                             <span>Soundcloud</span>
-                             <h3>Botanical Escape</h3>
-                           </div>
-                           <a className="elisc_tm_full_link soundcloud" href="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/471954807&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></a>
-                         </div>
-                       </li>
-                       <li className="modalbox">
-                         <div className="list_inner">
-                           <div className="image">
-                             <img src="/assets/images/thumbs/1-1.jpg" alt="" />
-                             <div className="main" data-img-url="/assets/images/portfolio/4.jpg"></div>
-                           </div>
-                           <div className="overlay"></div>
-                           <img className="svg" src="/assets/images/svg/text.svg" alt="" />
-                           <div className="details">
-                             <span>Modalbox</span>
-                             <h3>Model Car</h3>
-                           </div>
-                           <a className="elisc_tm_full_link portfolio_popup" href="#"></a>
-                           <div className="hidden_content">
-                             <div className="popup_details">
-                               <div className="main_details">
-                                 <div className="textbox">
-                                   <p>We live in a world where we need to move quickly and iterate on our ideas as flexibly as possible.</p>
-                                   <p>Mockups are useful both for the creative phase of the project - for instance when you&apos;re trying to figure out your user flows or the proper visual hierarchy - and the production phase when they will represent the target product. Making mockups a part of your creative and development process allows you to quickly and easily ideate.</p>
-                                 </div>
-                                 <div className="detailbox">
-                                   <ul>
-                                     <li>
-                                       <span className="first">Client</span>
-                                       <span>Alvaro Morata</span>
-                                     </li>
-                                     <li>
-                                       <span className="first">Category</span>
-                                       <span><a href="#">Detail</a></span>
-                                     </li>
-                                     <li>
-                                       <span className="first">Date</span>
-                                       <span>March 07, 2021</span>
-                                     </li>
-                                     <li>
-                                       <span className="first">Share</span>
-                                       <ul className="share">
-                                         <li><a href="#"><img className="svg" src="/assets/images/svg/social/facebook.svg" alt="" /></a></li>
-                                         <li><a href="#"><img className="svg" src="/assets/images/svg/social/twitter.svg" alt="" /></a></li>
-                                         <li><a href="#"><img className="svg" src="/assets/images/svg/social/instagram.svg" alt="" /></a></li>
-                                       </ul>
-                                     </li>
-                                   </ul>
-                                 </div>
-                               </div>
-                               <div className="additional_images">
-                                 <ul>
-                                   <li>
-                                     <div className="list_inner">
-                                       <div className="my_image">
-                                         <img src="/assets/images/thumbs/4-2.jpg" alt="" />
-                                         <div className="main" data-img-url="/assets/images/portfolio/1.jpg"></div>
-                                       </div>
-                                     </div>
-                                   </li>
-                                   <li>
-                                     <div className="list_inner">
-                                       <div className="my_image">
-                                         <img src="/assets/images/thumbs/4-2.jpg" alt="" />
-                                         <div className="main" data-img-url="/assets/images/portfolio/2.jpg"></div>
-                                       </div>
-                                     </div>
-                                   </li>
-                                   <li>
-                                     <div className="list_inner">
-                                       <div className="my_image">
-                                         <img src="/assets/images/thumbs/4-2.jpg" alt="" />
-                                         <div className="main" data-img-url="/assets/images/portfolio/3.jpg"></div>
-                                       </div>
-                                     </div>
-                                   </li>
-                                 </ul>
-                               </div>
-                             </div>
-                           </div>
-                         </div>
-                       </li>
-                     </ul>
-                   </div>
-                    <div className="elisc_tm_button" data-position="center">
-                      <a href="#">View all projects</a>
+                              <a className="elisc_tm_full_link soundcloude_link mfp-iframe audio" href="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/471954807&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></a>
+                            </div>
+                            <div className="details">
+                              <span className="category"><a href="#">Soundcloud</a></span>
+                              <h3 className="title"><a className="line_effect soundcloude_link mfp-iframe audio" href="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/471954807&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true">Creative Building</a></h3>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div className="list_inner">
+                            <div className="image">
+                              <img src="/assets/images/thumbs/31-36.jpg" alt="" />
+                              <div className="main" data-img-url="/assets/images/portfolio/4.jpg"></div>
+                              <a className="elisc_tm_full_link portfolio_popup" href="#"></a>
+                            </div>
+                            <div className="details">
+                              <span className="category"><a href="#">Modalbox</a></span>
+                              <h3 className="title"><a className="line_effect portfolio_popup" href="#">Beautiful Boat</a></h3>
+                            </div>
+
+                            {/* Modalbox Info Start */}
+                            <div className="hidden_content_portfolio">
+                              <div className="popup_details">
+                                <div className="main_details">
+                                  <div className="textbox">
+                                    <p>We live in a world where we need to move quickly and iterate on our ideas as flexibly as possible. Building mockups strikes the ideal balance ease of modification. Building mockups strikes the ideal balance ease of modification.</p>
+                                    <p>Mockups are useful both for the creative phase of the project - for instance when you&apos;re trying to figure out your user flows or the proper visual hierarchy - and the production phase when they phase when they will represent the target product. Building mockups strikes the ideal balance ease of modification.</p>
+                                  </div>
+                                  <div className="detailbox">
+                                    <ul>
+                                      <li>
+                                        <span className="first">Client</span>
+                                        <span>Alvaro Morata</span>
+                                      </li>
+                                      <li>
+                                        <span className="first">Category</span>
+                                        <span><a href="#">Modalbox</a></span>
+                                      </li>
+                                      <li>
+                                        <span className="first">Date</span>
+                                        <span>April 10, 2023</span>
+                                      </li>
+                                      <li>
+                                        <span className="first">Share</span>
+                                        <ul className="share">
+                                          <li><a href="#"><img className="svg" src="/assets/images/svg/social/facebook.svg" alt="" /></a></li>
+                                          <li><a href="#"><img className="svg" src="/assets/images/svg/social/twitter.svg" alt="" /></a></li>
+                                          <li><a href="#"><img className="svg" src="/assets/images/svg/social/instagram.svg" alt="" /></a></li>
+                                        </ul>
+                                      </li>
+                                    </ul>
+                                  </div>
+                                </div>
+                                <div className="additional_images">
+                                  <ul>
+                                    <li>
+                                      <div className="list_inner">
+                                        <div className="my_image">
+                                          <img src="/assets/images/thumbs/4-2.jpg" alt="" />
+                                          <div className="main" data-img-url="/assets/images/portfolio/5.jpg"></div>
+                                        </div>
+                                      </div>
+                                    </li>
+                                    <li>
+                                      <div className="list_inner">
+                                        <div className="my_image">
+                                          <img src="/assets/images/thumbs/4-2.jpg" alt="" />
+                                          <div className="main" data-img-url="/assets/images/portfolio/6.jpg"></div>
+                                        </div>
+                                      </div>
+                                    </li>
+                                    <li>
+                                      <div className="list_inner">
+                                        <div className="my_image">
+                                          <img src="/assets/images/thumbs/4-2.jpg" alt="" />
+                                          <div className="main" data-img-url="/assets/images/portfolio/7.jpg"></div>
+                                        </div>
+                                      </div>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </div>
+                            {/* /Modalbox Info Start */}
+
+                          </div>
+                        </li>
+                      </ul>
+                      <div className="elisc_tm_button" data-position="center">
+                        <a href="#">View all projects</a>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -799,10 +871,10 @@ export default function Home() {
               
               {/* NEWS */}
               <div className="elisc_tm_section" id="news">
-                <div className="elisc_tm_news fn_w_sminiboxes">
+                <div className="elisc_tm_news">
                   <div className="tm_content">
                     <div className="wrapper">
-                      <div className="left fn_w_sminibox">
+                      <div className="left">
                         <div className="elisc_tm_sticky_section">
                           <div className="elisc_tm_title">
                             <span>- Blog</span>
@@ -813,7 +885,7 @@ export default function Home() {
                           </div>
                         </div>
                       </div>
-                      <div className="right fn_w_sminibox">
+                      <div className="right">
                         <div className="elisc_tm_sticky_section">
                           <div className="list">
                             <ul>
@@ -847,10 +919,10 @@ export default function Home() {
                                 <div className="list_inner">
                                   <div className="info">
                                     <div className="meta">
-                                      <img className="svg" src="/assets/images/svg/calendar.svg" alt="" /> <span>April 14, 2023</span>
+                                      <img className="svg" src="/assets/images/svg/calendar.svg" alt="" /> <span>April 01, 2023</span>
                                     </div>
                                     <div className="title">
-                                      <h3><a href="#">Follow Your Own Design Process</a></h3>
+                                      <h3><a href="#">Dealing with spring allergy symptoms</a></h3>
                                     </div>
                                   </div>
                                   <div className="elisc_tm_read_more">
@@ -861,7 +933,7 @@ export default function Home() {
                                       <div className="text">
                                         <p>Elisc is a leading web design agency with an award-winning design team that creates innovative, effective websites that capture your brand, improve your conversion rates, and maximize your revenue to help grow your business and achieve your goals.</p>
                                         <p>In today&apos;s digital world, your website is the first interaction consumers have with your business. That&apos;s why almost 95 percent of a user&apos;s first impression relates to web design. It&apos;s also why web design services can have an immense impact on your company&apos;s bottom line.</p>
-                                        <p>That&apos;s why more companies are not only reevaluating their website&apos;s design but also partnering with Elisc, the web design agency that&apos;s driven more than $2.4 billion in revenue for its clients. With over 50 web design awards under our belt, we&apos;re confident we can design a custom website that drives sales for your unique business.</p>
+                                        <p>That&apos;s why more companies are not only reevaluating their website&apos;s design but also partnering with Kura, the web design agency that&apos;s driven more than $2.4 billion in revenue for its clients. With over 50 web design awards under our belt, we&apos;re confident we can design a custom website that drives sales for your unique business.</p>
                                       </div>
                                     </div>
                                   </div>
@@ -872,10 +944,10 @@ export default function Home() {
                                 <div className="list_inner">
                                   <div className="info">
                                     <div className="meta">
-                                      <img className="svg" src="/assets/images/svg/calendar.svg" alt="" /> <span>April 16, 2023</span>
+                                      <img className="svg" src="/assets/images/svg/calendar.svg" alt="" /> <span>March 30, 2023</span>
                                     </div>
                                     <div className="title">
-                                      <h3><a href="#">Usability Secrets to Create Better Interfaces</a></h3>
+                                      <h3><a href="#">Why we should read fewer books</a></h3>
                                     </div>
                                   </div>
                                   <div className="elisc_tm_read_more">
@@ -886,7 +958,107 @@ export default function Home() {
                                       <div className="text">
                                         <p>Elisc is a leading web design agency with an award-winning design team that creates innovative, effective websites that capture your brand, improve your conversion rates, and maximize your revenue to help grow your business and achieve your goals.</p>
                                         <p>In today&apos;s digital world, your website is the first interaction consumers have with your business. That&apos;s why almost 95 percent of a user&apos;s first impression relates to web design. It&apos;s also why web design services can have an immense impact on your company&apos;s bottom line.</p>
-                                        <p>That&apos;s why more companies are not only reevaluating their website&apos;s design but also partnering with Elisc, the web design agency that&apos;s driven more than $2.4 billion in revenue for its clients. With over 50 web design awards under our belt, we&apos;re confident we can design a custom website that drives sales for your unique business.</p>
+                                        <p>That&apos;s why more companies are not only reevaluating their website&apos;s design but also partnering with Kura, the web design agency that&apos;s driven more than $2.4 billion in revenue for its clients. With over 50 web design awards under our belt, we&apos;re confident we can design a custom website that drives sales for your unique business.</p>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </li>
+                              <li>
+                                <img className="popup_image" src="/assets/images/news/4.jpg" alt="" />
+                                <div className="list_inner">
+                                  <div className="info">
+                                    <div className="meta">
+                                      <img className="svg" src="/assets/images/svg/calendar.svg" alt="" /> <span>March 15, 2023</span>
+                                    </div>
+                                    <div className="title">
+                                      <h3><a href="#">Skills and tools for efficient web design</a></h3>
+                                    </div>
+                                  </div>
+                                  <div className="elisc_tm_read_more">
+                                    <a className="line_effect" href="#">Learn More<span><img className="svg" src="/assets/images/svg/rightArrow.svg" alt="" /></span></a>
+                                  </div>
+                                  <div className="news_hidden_details">
+                                    <div className="news_popup_informations">
+                                      <div className="text">
+                                        <p>Elisc is a leading web design agency with an award-winning design team that creates innovative, effective websites that capture your brand, improve your conversion rates, and maximize your revenue to help grow your business and achieve your goals.</p>
+                                        <p>In today&apos;s digital world, your website is the first interaction consumers have with your business. That&apos;s why almost 95 percent of a user&apos;s first impression relates to web design. It&apos;s also why web design services can have an immense impact on your company&apos;s bottom line.</p>
+                                        <p>That&apos;s why more companies are not only reevaluating their website&apos;s design but also partnering with Kura, the web design agency that&apos;s driven more than $2.4 billion in revenue for its clients. With over 50 web design awards under our belt, we&apos;re confident we can design a custom website that drives sales for your unique business.</p>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </li>
+                              <li>
+                                <img className="popup_image" src="/assets/images/news/5.jpg" alt="" />
+                                <div className="list_inner">
+                                  <div className="info">
+                                    <div className="meta">
+                                      <img className="svg" src="/assets/images/svg/calendar.svg" alt="" /> <span>Feb 20, 2023</span>
+                                    </div>
+                                    <div className="title">
+                                      <h3><a href="#">How to use python for web scraping</a></h3>
+                                    </div>
+                                  </div>
+                                  <div className="elisc_tm_read_more">
+                                    <a className="line_effect" href="#">Learn More<span><img className="svg" src="/assets/images/svg/rightArrow.svg" alt="" /></span></a>
+                                  </div>
+                                  <div className="news_hidden_details">
+                                    <div className="news_popup_informations">
+                                      <div className="text">
+                                        <p>Elisc is a leading web design agency with an award-winning design team that creates innovative, effective websites that capture your brand, improve your conversion rates, and maximize your revenue to help grow your business and achieve your goals.</p>
+                                        <p>In today&apos;s digital world, your website is the first interaction consumers have with your business. That&apos;s why almost 95 percent of a user&apos;s first impression relates to web design. It&apos;s also why web design services can have an immense impact on your company&apos;s bottom line.</p>
+                                        <p>That&apos;s why more companies are not only reevaluating their website&apos;s design but also partnering with Kura, the web design agency that&apos;s driven more than $2.4 billion in revenue for its clients. With over 50 web design awards under our belt, we&apos;re confident we can design a custom website that drives sales for your unique business.</p>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </li>
+                              <li>
+                                <img className="popup_image" src="/assets/images/news/6.jpg" alt="" />
+                                <div className="list_inner">
+                                  <div className="info">
+                                    <div className="meta">
+                                      <img className="svg" src="/assets/images/svg/calendar.svg" alt="" /> <span>Feb 11, 2023</span>
+                                    </div>
+                                    <div className="title">
+                                      <h3><a href="#">Best wireframe tools for web designers</a></h3>
+                                    </div>
+                                  </div>
+                                  <div className="elisc_tm_read_more">
+                                    <a className="line_effect" href="#">Learn More<span><img className="svg" src="/assets/images/svg/rightArrow.svg" alt="" /></span></a>
+                                  </div>
+                                  <div className="news_hidden_details">
+                                    <div className="news_popup_informations">
+                                      <div className="text">
+                                        <p>Elisc is a leading web design agency with an award-winning design team that creates innovative, effective websites that capture your brand, improve your conversion rates, and maximize your revenue to help grow your business and achieve your goals.</p>
+                                        <p>In today&apos;s digital world, your website is the first interaction consumers have with your business. That&apos;s why almost 95 percent of a user&apos;s first impression relates to web design. It&apos;s also why web design services can have an immense impact on your company&apos;s bottom line.</p>
+                                        <p>That&apos;s why more companies are not only reevaluating their website&apos;s design but also partnering with Kura, the web design agency that&apos;s driven more than $2.4 billion in revenue for its clients. With over 50 web design awards under our belt, we&apos;re confident we can design a custom website that drives sales for your unique business.</p>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </li>
+                              <li>
+                                <img className="popup_image" src="/assets/images/news/7.jpg" alt="" />
+                                <div className="list_inner">
+                                  <div className="info">
+                                    <div className="meta">
+                                      <img className="svg" src="/assets/images/svg/calendar.svg" alt="" /> <span>Jan 31, 2023</span>
+                                    </div>
+                                    <div className="title">
+                                      <h3><a href="#">Why we&apos;re crazy about animations</a></h3>
+                                    </div>
+                                  </div>
+                                  <div className="elisc_tm_read_more">
+                                    <a className="line_effect" href="#">Learn More<span><img className="svg" src="/assets/images/svg/rightArrow.svg" alt="" /></span></a>
+                                  </div>
+                                  <div className="news_hidden_details">
+                                    <div className="news_popup_informations">
+                                      <div className="text">
+                                        <p>Elisc is a leading web design agency with an award-winning design team that creates innovative, effective websites that capture your brand, improve your conversion rates, and maximize your revenue to help grow your business and achieve your goals.</p>
+                                        <p>In today&apos;s digital world, your website is the first interaction consumers have with your business. That&apos;s why almost 95 percent of a user&apos;s first impression relates to web design. It&apos;s also why web design services can have an immense impact on your company&apos;s bottom line.</p>
+                                        <p>That&apos;s why more companies are not only reevaluating their website&apos;s design but also partnering with Kura, the web design agency that&apos;s driven more than $2.4 billion in revenue for its clients. With over 50 web design awards under our belt, we&apos;re confident we can design a custom website that drives sales for your unique business.</p>
                                       </div>
                                     </div>
                                   </div>
