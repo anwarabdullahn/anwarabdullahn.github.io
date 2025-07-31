@@ -12,6 +12,10 @@ export default function Home() {
         <div className="loader_line"></div>
       </div>
 
+      {/* MAGIC CURSOR */}
+      <div className="mouse-cursor cursor-outer"></div>
+      <div className="mouse-cursor cursor-inner"></div>
+
       {/* WRAPPER ALL */}
       <div className="elisc_tm_all_wrap" data-magic-cursor="show">
         

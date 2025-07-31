@@ -6,14 +6,14 @@
  * Author: Marketify
  */
 
-// CSS Variables (converted to SCSS variables)
+// CSS Variables (using Next.js font optimization)
 $main-color: #55527C;
 $dark-color: #130F49;
 $yellow-color: #FF972D;
 $blue-color: #A5A6FF;
-$font-inter: 'Inter', sans-serif;
-$font-karla: 'Karla', sans-serif;
-$font-kristi: 'Kristi', cursive;
+$font-inter: var(--font-inter, 'Inter', sans-serif);
+$font-karla: var(--font-karla, 'Karla', sans-serif);
+$font-kristi: var(--font-kristi, 'Kristi', cursive);
 
 // Font face declarations
 @font-face {
@@ -92,15 +92,17 @@ html {
 }
 
 body {
-  font-family: $font-karla;
-  font-size: 18px;
-  line-height: 32px;
-  letter-spacing: 0px;
-  word-wrap: break-word;
-  font-weight: 400;
-  background-color: #fff;
-  color: $main-color;
-  overflow-x: hidden;
+  font-family: $font-karla !important;
+  font-size: 18px !important;
+  line-height: 32px !important;
+  letter-spacing: 0px !important;
+  word-wrap: break-word !important;
+  font-weight: 400 !important;
+  background-color: #fff !important;
+  color: $main-color !important;
+  overflow-x: hidden !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
 }
 
 // Placeholder styles
@@ -153,5 +155,101 @@ body {
   color: $dark-color;
 }
 
-// This is a basic conversion - the full CSS would need to be converted section by section
-// For now, we'll import the original CSS files and gradually convert them
+// Typography and heading styles - EXACT MATCH dengan original
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700 !important;
+  line-height: 1.3 !important;
+  font-family: $font-inter !important;  // ✅ Inter, bukan Karla!
+  color: $dark-color !important;
+}
+
+// Heading font sizes - EXACT MATCH
+h1 { font-size: 45px !important; }
+h2 { font-size: 36px !important; }
+h3 { font-size: 30px !important; }
+h4 { font-size: 24px !important; }
+h5 { font-size: 20px !important; }
+h6 { font-size: 16px !important; }
+
+// Button styles
+.elisc_tm_button a {
+  font-family: $font-karla !important;
+}
+
+// Mobile menu styles
+.elisc_tm_mobile_menu {
+  font-family: $font-karla !important;
+}
+
+// Sidebar styles
+.elisc_tm_sidebar {
+  font-family: $font-karla !important;
+}
+
+// Main content styles
+.elisc_tm_mainpart {
+  font-family: $font-karla !important;
+}
+
+// Title styles
+.elisc_tm_title {
+  font-family: $font-karla !important;
+  
+  span {
+    font-family: $font-inter !important;
+  }
+}
+
+// Ensure all elements inherit the correct font
+* {
+  font-family: inherit;
+}
+
+// Specific font overrides for Inter elements
+.inter-font,
+.elisc_tm_title span {
+  font-family: $font-inter !important;
+}
+
+// Specific font overrides for Kristi elements  
+.kristi-font,
+.script-font {
+  font-family: $font-kristi !important;
+}
+
+// Additional specific overrides to match original exactly
+.elisc_tm_all_wrap,
+.elisc_tm_all_wrap * {
+  -webkit-box-sizing: border-box !important;
+  -moz-box-sizing: border-box !important;
+  box-sizing: border-box !important;
+}
+
+// Specific sections font overrides
+.elisc_tm_home .title h3,
+.elisc_tm_home .title span {
+  font-family: $font-inter !important;
+}
+
+.elisc_tm_biography .name {
+  font-family: $font-inter !important;
+}
+
+.elisc_tm_title h3 {
+  font-family: $font-inter !important;
+}
+
+// Ensure body text stays Karla
+p, span, div, a {
+  font-family: $font-karla !important;
+}
+
+// Input and textarea styling
+input, textarea {
+  font-family: $font-karla !important;
+}
+
+// Specific list and navigation styling
+ul, ol, li {
+  font-family: $font-karla !important;
+}

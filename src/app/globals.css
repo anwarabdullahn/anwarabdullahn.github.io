@@ -1,53 +1,85 @@
-/* Import the original template CSS files */
-@import url('../themes/css/plugins.css');
-@import url('../themes/css/style.css');
+/* 
+ * CSS ASLI - No Next.js font optimization
+ * Menggunakan Google Fonts loading yang sama persis dengan template asli
+ */
 
-/* Google Fonts - matching the original template */
-@import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Kristi&display=swap');
-
-/* Ensure the original template styles take precedence */
-html, body {
-  font-family: 'Karla', sans-serif;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
+/* CSS Variables - EXACT MATCH dengan original template */
+:root {
+  --main-color: #55527C;
+  --dark-color: #130F49;
+  --yellow-color: #FF972D;
+  --blue-color: #A5A6FF;
+  --font-inter: 'Inter', sans-serif;
+  --font-karla: 'Karla', sans-serif;
+  --font-kristi: 'Kristi', cursive;
 }
 
-/* Override any conflicting styles */
+/* 
+ * Biarkan style.css menggunakan CSS variables aslinya
+ * Hanya override yang benar-benar diperlukan untuk Next.js compatibility
+ */
+
+/* Basic box-sizing untuk Next.js compatibility */
 * {
   box-sizing: border-box;
 }
 
-/* Ensure proper font loading */
-.elisc_tm_all_wrap {
-  font-family: 'Karla', sans-serif;
+/* 
+ * Template asli menggunakan CSS variables dan Google Fonts
+ * Sekarang font rendering akan 100% identik dengan original
+ */
+
+/* Layout fixes yang diperlukan untuk Next.js */
+.elisc_tm_mainpart {
+  padding-left: 370px !important;
 }
 
-/* Make sure the original animations and transitions work */
-.elisc_tm_section {
-  transition: all 0.3s ease;
-}
-
-/* Preserve original button styles */
-.elisc_tm_button a {
-  font-family: 'Karla', sans-serif;
-}
-
-/* Preserve original typography */
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Karla', sans-serif;
-}
-
-/* Ensure proper mobile menu functionality */
-.elisc_tm_mobile_menu {
-  font-family: 'Karla', sans-serif;
-}
-
-/* Preserve sidebar styling */
 .elisc_tm_sidebar {
-  font-family: 'Karla', sans-serif;
+  width: 370px !important;
+  position: fixed !important;
+  left: 0 !important;
+  top: 0 !important;
+  height: 100vh !important;
+}
+
+.elisc_tm_sidebar .sidebar_inner {
+  height: 100vh !important;
+  position: relative !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+}
+
+.elisc_tm_sidebar .menu {
+  flex: 1 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.elisc_tm_sidebar .copyright {
+  position: relative !important;
+  bottom: auto !important;
+  padding-bottom: 50px !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1600px) {
+  .elisc_tm_mainpart {
+    padding-left: 300px !important;
+  }
+  .elisc_tm_sidebar {
+    width: 300px !important;
+  }
+}
+
+@media (max-width: 1040px) {
+  .elisc_tm_mainpart {
+    padding-left: 0px !important;
+  }
+  .elisc_tm_sidebar {
+    display: none !important;
+  }
 }
 
 /* Map styles */

@@ -99,7 +99,7 @@ export const useEliscTemplate = () => {
           
           document.addEventListener('mouseenter', (e) => {
             const target = e.target as HTMLElement;
-            if (target.matches('a, .cursor-pointer')) {
+            if (target && typeof target.matches === 'function' && target.matches('a, .cursor-pointer')) {
               cursorInner.classList.add('cursor-hover');
               cursorOuter.classList.add('cursor-hover');
             }
@@ -107,7 +107,7 @@ export const useEliscTemplate = () => {
           
           document.addEventListener('mouseleave', (e) => {
             const target = e.target as HTMLElement;
-            if (target.matches('a, .cursor-pointer')) {
+            if (target && typeof target.matches === 'function' && target.matches('a, .cursor-pointer')) {
               cursorInner.classList.remove('cursor-hover');
               cursorOuter.classList.remove('cursor-hover');
             }
@@ -514,45 +514,72 @@ export const useEliscTemplate = () => {
 
     // One page navigation
     const initOnePageNav = () => {
-      const navLinks = document.querySelectorAll('.elisc_tm_header .menu ul li a');
-      const sections = document.querySelectorAll('div[id]');
+      // Target both sidebar and mobile menu navigation
+      const sidebarNavLinks = document.querySelectorAll('.elisc_tm_sidebar .anchor_nav li');
+      const mobileNavLinks = document.querySelectorAll('.elisc_tm_mobile_menu .anchor_nav li');
+      const allNavLinks = [...sidebarNavLinks, ...mobileNavLinks];
+      const sections = document.querySelectorAll('.elisc_tm_section[id]');
       
       const updateActiveNav = () => {
-        let current = '';
+        let current = 'home'; // Default to home
         
         sections.forEach(section => {
           const sectionTop = section.getBoundingClientRect().top;
           const sectionHeight = section.clientHeight;
           
-          if (sectionTop <= 100 && sectionTop + sectionHeight > 100) {
-            current = section.getAttribute('id') || '';
+          // Check if section is in viewport (with some offset)
+          if (sectionTop <= 150 && sectionTop + sectionHeight > 150) {
+            current = section.getAttribute('id') || 'home';
           }
         });
         
-        navLinks.forEach(link => {
-          link.classList.remove('current');
-          const href = link.getAttribute('href');
-          if (href === `#${current}`) {
-            link.classList.add('current');
+        // Update active states for all navigation links
+        allNavLinks.forEach(navItem => {
+          const link = navItem.querySelector('a');
+          if (link) {
+            const href = link.getAttribute('href');
+            navItem.classList.remove('current');
+            if (href === `#${current}`) {
+              navItem.classList.add('current');
+            }
           }
         });
+        
+        // Update React state
+        setActiveSection(current);
       };
       
       window.addEventListener('scroll', updateActiveNav);
       updateActiveNav(); // Initial check
       
       // Smooth scroll for navigation links
-      navLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-          e.preventDefault();
-          const href = link.getAttribute('href');
-          if (href && href.startsWith('#')) {
-            const target = document.querySelector(href);
-            if (target) {
-              target.scrollIntoView({ behavior: 'smooth' });
+      allNavLinks.forEach(navItem => {
+        const link = navItem.querySelector('a');
+        if (link) {
+          link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const href = link.getAttribute('href');
+            if (href && href.startsWith('#')) {
+              const target = document.querySelector(href);
+              if (target) {
+                // Remove current class from all nav items
+                allNavLinks.forEach(item => item.classList.remove('current'));
+                // Add current class to clicked item
+                navItem.classList.add('current');
+                
+                // Smooth scroll to target
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                
+                // Update React state
+                const sectionId = href.replace('#', '');
+                setActiveSection(sectionId);
+                
+                // Close mobile menu if open
+                setMobileMenuOpen(false);
+              }
             }
-          }
-        });
+          });
+        }
       });
     };
 
