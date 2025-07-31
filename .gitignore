@@ -19,7 +19,7 @@
 
 # production
 /build
-/dist
+# /dist - Commented out for GitHub Pages deployment
 
 # misc
 .DS_Store
