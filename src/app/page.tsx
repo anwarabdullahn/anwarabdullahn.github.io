@@ -144,7 +144,7 @@ export default function Home() {
                   </ul>
                 </div>
                 <div className="copyright">
-                  <p>Copyright &copy; 2023</p>
+                  <p>Copyright &copy; 2025</p>
                 </div>
               </div>
             </div>
@@ -159,7 +159,7 @@ export default function Home() {
                   <div className="main" data-img-url="/assets/images/about/1.jpg"></div>
                 </div>
                 <div className="name">
-                  <h3><span>Robert Elisc<span className="back">Robert Elisc</span></span></h3>
+                  <h3><span>Anwar Abdullah<span className="back">Anwar Abdullah</span></span></h3>
                 </div>
               </div>
               <div className="menu scrollable">
@@ -181,7 +181,7 @@ export default function Home() {
                   </ul>
                 </div>
                 <div className="text">
-                  <p>Copyright © 2023 Robert Elisc. All rights reserved.</p>
+                  <p>Copyright © 2025 Anwar Abdullah. All rights reserved.</p>
                 </div>
               </div>
             </div>
@@ -198,21 +198,23 @@ export default function Home() {
                     <div className="details">
                       <div className="left">
                         <div className="title">
-                          <h3>Hi, I&apos;m <span className="blueColor">Elisc!</span></h3>
+                          <h3>Hi, I&apos;m <span className="blueColor">Anwar!</span></h3>
                           <h3>
                             <span className="cd-headline rotate-1">
-                              <span className="blc">Creative</span>
+                              {/* <span className="blc">Creative</span> */}
                               <span className="cd-words-wrapper">
-                                <b className="is-visible">Designer</b>
-                                <b>Coder</b>
-                                <b>Player</b>
+                                <b className="is-visible">Software Engineer</b>
+                                <b>Tech Enthusiast</b>
+                                <b>Fullstack Developer</b>
+                                <b>Frontend Developer</b>
+                                <b>Backend Developer</b>
                               </span>
                             </span>
                           </h3>
-                          <h3>Based in Florida</h3>
+                          <h3>Based in Batam</h3>
                         </div>
                         <div className="subtitle">
-                          <p>I&apos;m a Florida based web designer &amp; front‑end developer with <span className="blueColor">10+ years</span> of experience</p>
+                          <p>I&apos;m a Batam based web designer &amp; front‑end developer with <span className="blueColor">5+ years</span> of experience</p>
                         </div>
                         <div className="buttons">
                           <div className="elisc_tm_button">
@@ -224,9 +226,9 @@ export default function Home() {
                         </div>
                         <div className="info">
                           <ul>
-                            <li><a href="tel:+77 022 444 05 05">+77 022 444 05 05</a></li>
-                            <li><a href="mailto:support@elisc.com">support@elisc.com</a></li>
-                            <li><a className="href_location" href="#">Ave Street Avenue, New York</a></li>
+                            <li><a href="tel:+62 877 9119 4987">+62 877 9119 4987</a></li>
+                            <li><a href="mailto:aannwaran@gmail.com">aannwaran@gmail.com</a></li>
+                            <li><a className="href_location" href="#">Batam. Kepulauan Riau, Indonesia</a></li>
                           </ul>
                         </div>
                       </div>
@@ -246,7 +248,7 @@ export default function Home() {
                       <div className="left">
                         <div className="title">
                           <span className="mini">- Nice to meet you!</span>
-                          <h3 className="name">Robert Elisc</h3>
+                          <h3 className="name">Anwar Abdullah</h3>
                           <span className="job">
                             <span className="cd-headline rotate-1">
                               <span className="blc">Web designer &amp;</span>
@@ -264,7 +266,7 @@ export default function Home() {
                       </div>
                       <div className="right">
                         <div className="text">
-                          <p>Hello there! My name is <span className="yellowColor">Robert Elisc</span>. I am a web designer &amp; developer, and I&apos;m very passionate and dedicated to my work.</p>
+                          <p>Hello there! My name is <span className="yellowColor">Anwar Abdullah</span>. I am a web designer &amp; developer, and I&apos;m very passionate and dedicated to my work.</p>
                           <p>With 20 years experience as a professional a graphic designer, I have acquired the skills and knowledge necessary to make your project a success. I enjoy every step of the design process, from discussion and collaboration.</p>
                         </div>
                         <div className="info">
@@ -274,16 +276,12 @@ export default function Home() {
                               <span>25</span>
                             </li>
                             <li>
-                              <span>Born In</span>
-                              <span><a className="href_location" href="#">Florida, USA</a></span>
-                            </li>
-                            <li>
                               <span>Mail</span>
-                              <span><a href="mailto:support@elisc.com">support@elisc.com</a></span>
+                              <span><a href="mailto:aannwaran@gmail.com">aannwaran@gmail.com</a></span>
                             </li>
                             <li>
                               <span>Phone</span>
-                              <span><a href="tel:+77 022 444 05 05">+77 022 444 05 05</a></span>
+                              <span><a href="tel:+62 877 9119 4987">+62 877 9119 4987</a></span>
                             </li>
                           </ul>
                         </div>
@@ -436,7 +434,7 @@ export default function Home() {
                         <span>- Services</span>
                         <h3>My Services</h3>
                       </div>
-                      <a href="mailto:support@elisc.com">support@elisc.com</a>
+                      <a href="mailto:aannwaran@gmail.com">aannwaran@gmail.com</a>
                     </div>
                     <div className="service_list">
                       <ul>
@@ -693,7 +691,7 @@ export default function Home() {
                                       </li>
                                       <li>
                                         <span className="first">Date</span>
-                                        <span>April 10, 2023</span>
+                                        <span>April 10, 2025</span>
                                       </li>
                                       <li>
                                         <span className="first">Share</span>
@@ -894,7 +892,7 @@ export default function Home() {
                                 <div className="list_inner">
                                   <div className="info">
                                     <div className="meta">
-                                      <img className="svg" src="/assets/images/svg/calendar.svg" alt="" /> <span>April 12, 2023</span>
+                                      <img className="svg" src="/assets/images/svg/calendar.svg" alt="" /> <span>April 12, 2025</span>
                                     </div>
                                     <div className="title">
                                       <h3><a href="#">12 unique examples of portfolio websites</a></h3>
@@ -919,7 +917,7 @@ export default function Home() {
                                 <div className="list_inner">
                                   <div className="info">
                                     <div className="meta">
-                                      <img className="svg" src="/assets/images/svg/calendar.svg" alt="" /> <span>April 01, 2023</span>
+                                      <img className="svg" src="/assets/images/svg/calendar.svg" alt="" /> <span>April 01, 2025</span>
                                     </div>
                                     <div className="title">
                                       <h3><a href="#">Dealing with spring allergy symptoms</a></h3>
@@ -944,7 +942,7 @@ export default function Home() {
                                 <div className="list_inner">
                                   <div className="info">
                                     <div className="meta">
-                                      <img className="svg" src="/assets/images/svg/calendar.svg" alt="" /> <span>March 30, 2023</span>
+                                      <img className="svg" src="/assets/images/svg/calendar.svg" alt="" /> <span>March 30, 2025</span>
                                     </div>
                                     <div className="title">
                                       <h3><a href="#">Why we should read fewer books</a></h3>
@@ -969,7 +967,7 @@ export default function Home() {
                                 <div className="list_inner">
                                   <div className="info">
                                     <div className="meta">
-                                      <img className="svg" src="/assets/images/svg/calendar.svg" alt="" /> <span>March 15, 2023</span>
+                                      <img className="svg" src="/assets/images/svg/calendar.svg" alt="" /> <span>March 15, 2025</span>
                                     </div>
                                     <div className="title">
                                       <h3><a href="#">Skills and tools for efficient web design</a></h3>
@@ -994,7 +992,7 @@ export default function Home() {
                                 <div className="list_inner">
                                   <div className="info">
                                     <div className="meta">
-                                      <img className="svg" src="/assets/images/svg/calendar.svg" alt="" /> <span>Feb 20, 2023</span>
+                                      <img className="svg" src="/assets/images/svg/calendar.svg" alt="" /> <span>Feb 20, 2025</span>
                                     </div>
                                     <div className="title">
                                       <h3><a href="#">How to use python for web scraping</a></h3>
@@ -1019,7 +1017,7 @@ export default function Home() {
                                 <div className="list_inner">
                                   <div className="info">
                                     <div className="meta">
-                                      <img className="svg" src="/assets/images/svg/calendar.svg" alt="" /> <span>Feb 11, 2023</span>
+                                      <img className="svg" src="/assets/images/svg/calendar.svg" alt="" /> <span>Feb 11, 2025</span>
                                     </div>
                                     <div className="title">
                                       <h3><a href="#">Best wireframe tools for web designers</a></h3>
@@ -1044,7 +1042,7 @@ export default function Home() {
                                 <div className="list_inner">
                                   <div className="info">
                                     <div className="meta">
-                                      <img className="svg" src="/assets/images/svg/calendar.svg" alt="" /> <span>Jan 31, 2023</span>
+                                      <img className="svg" src="/assets/images/svg/calendar.svg" alt="" /> <span>Jan 31, 2025</span>
                                     </div>
                                     <div className="title">
                                       <h3><a href="#">Why we&apos;re crazy about animations</a></h3>
@@ -1089,13 +1087,13 @@ export default function Home() {
                         <div className="info">
                           <ul>
                             <li>
-                              <a href="tel:+77 022 444 05 05">+77 022 444 05 05</a>
+                              <a href="tel:+62 877 9119 4987">+62 877 9119 4987</a>
                             </li>
                             <li>
-                              <a href="mailto:support@elisc.com">support@elisc.com</a>
+                              <a href="mailto:aannwaran@gmail.com">aannwaran@gmail.com</a>
                             </li>
                             <li>
-                              <a className="href_location" href="#">Ave Street Avenue, New York</a>
+                              <a className="href_location" href="#">Batam. Kepulauan Riau, Indonesia</a>
                             </li>
                           </ul>
                         </div>
