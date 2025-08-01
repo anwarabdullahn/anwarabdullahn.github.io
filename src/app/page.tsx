@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useEliscTemplate } from './hooks/useEliscTemplate';
+import Preloader from '../components/Preloader';
 
 export default function Home() {
   const { activeSection, mobileMenuOpen, isLoaded, handleSectionChange, toggleMobileMenu } = useEliscTemplate();
@@ -89,9 +90,7 @@ export default function Home() {
   return (
     <>
       {/* PRELOADER */}
-      <div id="preloader">
-        <div className="loader_line"></div>
-      </div>
+      <Preloader />
 
       {/* MAGIC CURSOR */}
       <div className="mouse-cursor cursor-outer"></div>
