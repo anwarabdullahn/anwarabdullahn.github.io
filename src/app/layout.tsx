@@ -5,7 +5,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Anwar Abdullah - Software Engineer",
-  description: "Software Engineer | 5+ Years Experience | Passionate About Learning & Adapting New Technologies",
+  description: "Software Engineer | 6+ Years Experience | Passionate About Learning & Adapting New Technologies",
 };
 
 export default function RootLayout({

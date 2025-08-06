@@ -28,11 +28,11 @@ export default function HomeSection({ className }: HomeSectionProps) {
                 <h3>Based in Batam</h3>
               </div>
               <div className="subtitle">
-                <p>I&apos;m a Batam based web designer &amp; front‑end developer with <span className="blueColor">5+ years</span> of experience</p>
+                <p>I&apos;m a Batam based software engineer with <span className="blueColor">6+ years</span> of experience</p>
               </div>
               <div className="buttons">
                 <div className="elisc_tm_button">
-                  <a className="anchor" href="#portfolio">Got a project?</a>
+                  <a className="download-cv" href="/assets/docs/Anwar Abdullah.pdf" download="Anwar Abdullah CV.pdf">Download CV</a>
                 </div>
                 <div className="elisc_tm_button" data-style="border">
                   <a className="anchor" href="#contact">Let&apos;s talk</a>
