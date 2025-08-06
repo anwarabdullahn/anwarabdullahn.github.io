@@ -170,7 +170,7 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ className }) => {
               </li>
             </ul>
           </div>
-          <div className="elisc_tm_video">
+          <div className="elisc_tm_video hidden">
             <img className="placeholder" src="/assets/images/thumbs/4-2.jpg" alt="" />
             <div className="image" data-img-url="/assets/images/service/1.jpg"></div>
             <div className="overlay"></div>

@@ -6,7 +6,7 @@ interface PartnersSectionProps {
 
 const PartnersSection: React.FC<PartnersSectionProps> = ({ className }) => {
   return (
-    <div className={`elisc_tm_partners ${className || ''}`}>
+    <div className={`elisc_tm_partners ${className || ''} hidden`}>
       <div className="tm_content">
         <div className="elisc_tm_title">
           <span>- Clients</span>

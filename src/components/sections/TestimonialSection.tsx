@@ -1,6 +1,6 @@
 export default function TestimonialSection() {
   return (
-    <div className="elisc_tm_testimonial_wrapper">
+    <div className="elisc_tm_testimonial_wrapper hidden">
       <div className="tm_content">
         <div className="elisc_tm_testimonials">
           <div className="elisc_tm_title" data-position="center">

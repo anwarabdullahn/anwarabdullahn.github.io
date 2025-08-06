@@ -144,11 +144,14 @@ export const useEliscTemplate = () => {
             const placeSpan = parent.querySelector('.place span');
             const hiddenDetails = parent.querySelector('.hidden_details');
             
-            if (popupImage && jobSpan && jobH3 && placeSpan && hiddenDetails) {
-              const elImage = popupImage.getAttribute('src');
-              const year = jobSpan.textContent?.slice(1) || '';
+            if (jobSpan && jobH3 && placeSpan && hiddenDetails) {
+              let elImage = "" as string | null;
+              if (popupImage) {
+                elImage = popupImage.getAttribute('src');
+              }
+              const year = jobSpan.textContent || '';
               const job = jobH3.textContent || '';
-              const place = placeSpan.textContent?.slice(1) || '';
+              const place = placeSpan.textContent || '';
               const content = hiddenDetails.innerHTML;
               
               modalBox.classList.add('opened');
@@ -158,7 +161,7 @@ export const useEliscTemplate = () => {
                 const descriptions = descWrap.querySelector('.descriptions');
                 if (descriptions) {
                   descriptions.insertAdjacentHTML('afterbegin', 
-                    `<div class="top_image"><img src="/assets/images/thumbs/4-2.jpg" alt="" /><div class="main" data-img-url="${elImage}"></div></div>`
+                    `<div class="top_image" style="${elImage ? '' : 'display: none;'}"><img src="/assets/images/thumbs/4-2.jpg" alt="" /><div class="main" data-img-url="${elImage}"></div></div>`
                   );
                   descriptions.insertAdjacentHTML('afterbegin',
                     `<div class="infos"><div class="year"><span>${year}</span></div><div class="job"><span>${place}</span><h3>${job}</h3></div></div>`
