@@ -57,7 +57,9 @@ jobs:
         run: npm run build
         
       - name: Add .nojekyll file
-        run: cp ./public/.nojekyll ./dist/.nojekyll
+        run: |
+          mkdir -p ./dist
+          cp ./public/.nojekyll ./dist/.nojekyll
         
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
