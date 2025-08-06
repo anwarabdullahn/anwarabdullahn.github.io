@@ -316,8 +316,6 @@ export const useEliscTemplate = () => {
       const sendButton = document.querySelector('.contact_form #send_message');
       
       sendButton?.addEventListener('click', (e) => {
-        e.preventDefault();
-        
         const nameInput = document.querySelector('.contact_form #name') as HTMLInputElement;
         const emailInput = document.querySelector('.contact_form #email') as HTMLInputElement;
         const messageInput = document.querySelector('.contact_form #message') as HTMLTextAreaElement;
@@ -329,29 +327,19 @@ export const useEliscTemplate = () => {
           const name = nameInput.value;
           const email = emailInput.value;
           const message = messageInput.value;
-          const subject = subjectInput?.value || '';
           
           returnMessage.innerHTML = '';
           
           if (name === '' || email === '' || message === '') {
+            e.preventDefault(); // Only prevent submission if validation fails
             if (emptyNotice) {
               emptyNotice.style.display = 'block';
               setTimeout(() => {
                 emptyNotice.style.display = 'none';
               }, 2500);
             }
-          } else {
-            // Simulate form submission
-            returnMessage.innerHTML = '<span class="contact_success">Message sent successfully!</span>';
-            returnMessage.style.display = 'block';
-            setTimeout(() => {
-              returnMessage.style.display = 'none';
-              nameInput.value = '';
-              emailInput.value = '';
-              messageInput.value = '';
-              if (subjectInput) subjectInput.value = '';
-            }, 4000);
           }
+          // If validation passes, allow the form to submit naturally to FormSubmit.co
         }
       });
     };

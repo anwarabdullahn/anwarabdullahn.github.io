@@ -28,24 +28,27 @@ export default function ContactSection() {
             </div>
             <div className="right">
               <div className="fields">
-                <form action="/" method="post" className="contact_form" id="contact_form">
+                <form action="https://formsubmit.co/aannwaran@gmail.com" method="POST" className="contact_form" id="contact_form">
+                  <input type="hidden" name="_captcha" value="false" />
+                  <input type="hidden" name="_next" value="https://anwarabdullahn.github.io/#contact" />
+                  <input type="hidden" name="_autoresponse" value="Thank you for your message! I will get back to you soon." />
                   <div className="returnmessage" data-success="Your message has been received, We will contact you soon."></div>
                   <div className="empty_notice"><span>Please Fill Required Fields</span></div>
                   <div className="first">
                     <ul>
                       <li>
-                        <input id="name" type="text" placeholder="Enter your name" autoComplete="off" />
+                        <input id="name" name="name" type="text" placeholder="Enter your name" autoComplete="off" required />
                       </li>
                       <li>
-                        <input id="email" type="text" placeholder="Your email" autoComplete="off" />
+                        <input id="email" name="email" type="email" placeholder="Your email" autoComplete="off" required />
                       </li>
                     </ul>
                   </div>
                   <div className="last">
-                    <textarea id="message" placeholder="Write something..."></textarea>
+                    <textarea id="message" name="message" placeholder="Write something..." required></textarea>
                   </div>
                   <div className="elisc_tm_button">
-                    <a id="send_message" href="#">Submit now</a>
+                    <button type="submit" id="send_message" style={{background: 'none', border: 'none', padding: 0, font: 'inherit', cursor: 'pointer', outline: 'inherit', textDecoration: 'none', color: 'inherit'}}>Submit now</button>
                   </div>
                 </form>
               </div>
