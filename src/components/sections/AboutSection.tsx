@@ -16,11 +16,13 @@ export default function AboutSection({ className }: AboutSectionProps) {
                 <h3 className="name">Anwar Abdullah</h3>
                 <span className="job">
                   <span className="cd-headline rotate-1">
-                    <span className="blc">Web designer &amp;</span>
+                    {/* <span className="blc">Web designer &amp;</span> */}
                     <span className="cd-words-wrapper">
-                      <b className="is-visible">Developer</b>
-                      <b>Coder</b>
-                      <b>Player</b>
+                      <b className="is-visible">Software Engineer</b>
+                      <b>Tech Enthusiast</b>
+                      <b>Fullstack Developer</b>
+                      <b>Frontend Developer</b>
+                      <b>Backend Developer</b>
                     </span>
                   </span>
                 </span>
@@ -31,14 +33,15 @@ export default function AboutSection({ className }: AboutSectionProps) {
             </div>
             <div className="right">
               <div className="text">
-                <p>Hello there! My name is <span className="yellowColor">Anwar Abdullah</span>. I am a web designer &amp; developer, and I&apos;m very passionate and dedicated to my work.</p>
-                <p>With 20 years experience as a professional a graphic designer, I have acquired the skills and knowledge necessary to make your project a success. I enjoy every step of the design process, from discussion and collaboration.</p>
+                <p>Hello there! My name is <span className="yellowColor">Anwar Abdullah</span>. Software Engineer with over <span className="yellowColor">6 years of experience</span> building scalable web and mobile applications. My core expertise is in JavaScript and TypeScript, working with modern frameworks like React.js, Vue.js, and Node.js/Nest.js to deliver reliable solutions for hospitality, logistics, and HR industries.</p>
+                <p>I have contributed to startups in Singapore and Indonesia, creating and maintaining microservices for POS and payment gateways, developing digital concierge systems for hotels, and enhancing logistics platforms.</p>
+                <p>While my primary tools are in the JavaScript ecosystem, I’m always eager to learn and work with new programming languages and technologies—continuously expanding my skill set beyond any single tech stack.</p>
               </div>
               <div className="info">
                 <ul>
                   <li>
                     <span>Age</span>
-                    <span>25</span>
+                    <span>29</span>
                   </li>
                   <li>
                     <span>Mail</span>
@@ -56,13 +59,13 @@ export default function AboutSection({ className }: AboutSectionProps) {
             <ul>
               <li>
                 <div className="list_inner">
-                  <h3>10+</h3>
+                  <h3>6+</h3>
                   <span>Years of Experience</span>
                 </div>
               </li>
               <li>
                 <div className="list_inner">
-                  <h3>50+</h3>
+                  <h3>20+</h3>
                   <span>Projects Completed</span>
                 </div>
               </li>

@@ -47,7 +47,7 @@ export default function HomeSection({ className }: HomeSectionProps) {
               </div>
             </div>
             <div className="right">
-              <img src="/assets/images/about/2.jpg" alt="" />
+              <img src="/assets/images/personals/anwar.jpg" alt="" />
             </div>
           </div>
         </div>
