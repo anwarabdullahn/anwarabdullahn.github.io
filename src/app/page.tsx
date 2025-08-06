@@ -143,11 +143,9 @@ export default function Home() {
                 </div>
                 <div className="social">
                   <ul>
-                    <li><a href="#"><img className="svg" src="/assets/images/svg/social/facebook.svg" alt="" /></a></li>
-                    <li><a href="#"><img className="svg" src="/assets/images/svg/social/twitter.svg" alt="" /></a></li>
-                    <li><a href="#"><img className="svg" src="/assets/images/svg/social/instagram.svg" alt="" /></a></li>
-                    <li><a href="#"><img className="svg" src="/assets/images/svg/social/dribbble.svg" alt="" /></a></li>
-                    <li><a href="#"><img className="svg" src="/assets/images/svg/social/tik-tok.svg" alt="" /></a></li>
+                    <li><a href="mailto:aannwaran@gmail.com"><i className="icon-mail-1"></i></a></li>
+                    <li><a href="https://github.com/anwarabdullahn" target="_blank" rel="noopener noreferrer"><i className="icon-github-1"></i></a></li>
+                    <li><a href="https://www.linkedin.com/in/anwarabdullahn/" target="_blank" rel="noopener noreferrer"><i className="icon-linkedin-1"></i></a></li>
                   </ul>
                 </div>
                 <div className="copyright">

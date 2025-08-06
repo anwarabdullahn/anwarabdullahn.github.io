@@ -537,3 +537,8 @@
   position: absolute !important;
   z-index: -11 !important;
 }
+
+/* Make social media icons black - specific to mobile menu only */
+.elisc_tm_mobile_menu .social ul li a {
+  color: #000000 !important;
+}
