@@ -32,12 +32,8 @@ jobs:
           node-version: '18'
           cache: 'npm'
           
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-        with:
-          # Automatically inject basePath in your Next.js configuration file and disable
-          # server side image optimization (so your project can be deployed to GitHub Pages).
-          static_site_generator: next
+      # Note: Removed Setup Pages action because this is a user/organization repository
+      # (anwarabdullahn.github.io) which should deploy to root domain without basePath
           
       - name: Restore cache
         uses: actions/cache@v4
