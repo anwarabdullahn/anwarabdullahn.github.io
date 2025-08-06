@@ -55,7 +55,7 @@ export default function AboutSection({ className }: AboutSectionProps) {
               </div>
             </div>
           </div>
-          <div className="elisc_tm_counter">
+          <div className="elisc_tm_counter hidden">
             <ul>
               <li>
                 <div className="list_inner">
