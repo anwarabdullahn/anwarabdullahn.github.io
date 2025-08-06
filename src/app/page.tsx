@@ -129,7 +129,7 @@ export default function Home() {
             <div className="inner">
               <div className="wrapper">
                 <div className="avatar">
-                  <div className="image" data-img-url="/assets/images/about/1.jpg"></div>
+                  <div className="image" data-img-url="/assets/images/personals/avatar.jpeg"></div>
                 </div>
                 <div className="menu_list">
                   <ul className="anchor_nav">
@@ -162,8 +162,8 @@ export default function Home() {
             <div className="sidebar_inner">
               <div className="author">
                 <div className="image">
-                  <img src="/assets/images/thumbs/1-1.jpg" alt="" />
-                  <div className="main" data-img-url="/assets/images/about/1.jpg"></div>
+                  <img src="/assets/images/personals/avatar.jpeg" alt="" />
+                  <div className="main" data-img-url="/assets/images/personals/avatar.jpeg"></div>
                 </div>
                 <div className="name">
                   <h3><span>Anwar Abdullah<span className="back">Anwar Abdullah</span></span></h3>
