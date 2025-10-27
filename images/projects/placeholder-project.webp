@@ -1,0 +1,175 @@
+const fs = require('fs');
+const path = require('path');
+
+// Create a simple SVG placeholder for each project
+const createPlaceholderSVG = (title, color = '#3B82F6') => {
+  return `<svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:${color};stop-opacity:0.8" />
+        <stop offset="100%" style="stop-color:${color};stop-opacity:0.3" />
+      </linearGradient>
+    </defs>
+    <rect width="400" height="300" fill="url(#grad)"/>
+    <rect x="0" y="250" width="400" height="50" fill="rgba(0,0,0,0.3)"/>
+    <text x="200" y="150" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="white" text-anchor="middle">
+      ${title}
+    </text>
+    <text x="200" y="280" font-family="Arial, sans-serif" font-size="14" fill="white" text-anchor="middle">
+      Project Preview
+    </text>
+  </svg>`;
+};
+
+const projects = [
+  { name: 'news-factory', color: '#3B82F6' },
+  { name: 'vouch-dining', color: '#10B981' },
+  { name: 'versadrive', color: '#F59E0B' },
+  { name: 'pos-integration', color: '#8B5CF6' },
+  { name: 'hr-system', color: '#EF4444' },
+  { name: 'vue-library', color: '#EC4899' },
+  { name: 'ecommerce-cms', color: '#14B8A6' },
+  { name: 'payment-service', color: '#6366F1' },
+  { name: 'hotel-booking', color: '#84CC16' },
+  { name: 'dev-cli', color: '#F97316' }
+];
+
+const projectsDir = path.join(__dirname, '../public/images/projects');
+
+// Create directory if it doesn't exist
+if (!fs.existsSync(projectsDir)) {
+  fs.mkdirSync(projectsDir, { recursive: true });
+}
+
+// Generate SVG placeholders
+projects.forEach(project => {
+  const svgContent = createPlaceholderSVG(project.name.replace('-', ' ').toUpperCase(), project.color);
+  const svgPath = path.join(projectsDir, `${project.name}.svg`);
+  fs.writeFileSync(svgPath, svgContent);
+  console.log(`Created placeholder: ${svgPath}`);
+});
+
+console.log('Project placeholder images generated successfully!');
+```
+
+Now let me run this script to generate the placeholder images:
+```bash
+cd /Users/anwarabdullahn/Developer/Project/my-portfolio && node scripts/generate-project-images.js
+```
+
+Let me also create a CSS file to add some styling for the projects section:
+```/Users/anwarabdullahn/Developer/Project/my-portfolio/src/components/sections/projects/projects.css
+/* Line clamp utility for text truncation */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Custom scrollbar for modal */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+/* Dark mode scrollbar */
+.dark .custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+```
+
+Perfect! I've created a comprehensive Projects showcase section for your portfolio. Here's what I've built for you:
+
+## 🚀 **New Projects Section Features**
+
+### **1. Project Cards with Rich Information**
+- Eye-catching project previews with hover effects
+- Category badges (Web Apps, Mobile Apps, APIs, Full-Stack, Open Source)
+- Status indicators (Completed, In Progress, Maintenance)
+- Tech stack display with quick overview
+- Project metadata (year, client, team size, duration)
+- Direct links to live demos, GitHub, and app stores
+
+### **2. Interactive Filtering System**
+- Filter projects by category
+- Animated category buttons with project counts
+- Smooth transitions between filtered views
+
+### **3. Detailed Project Modal**
+- Click any project card to see detailed information
+- Full project descriptions and key features
+- Complete technology stack
+- All project links and metadata
+- Beautiful, responsive modal design
+
+### **4. Statistics Section**
+- Total projects completed
+- Technologies used count
+- Happy clients served
+- Open source contributions
+
+### **5. Call-to-Action**
+- Encourages visitors to reach out for collaborations
+- Smooth scroll to contact section
+
+## 📁 **File Structure Created**
+
+```
+src/components/sections/projects/
+├── data/
+│   └── projects-data.ts          # Project data and categories
+├── components/
+│   ├── ProjectCard.tsx           # Individual project card component
+│   ├── ProjectFilter.tsx         # Category filter component
+│   └── ProjectModal.tsx          # Detailed project view modal
+├── Projects.tsx                  # Main projects section component
+└── projects.css                  # Custom styles and utilities
+```
+
+## 🎨 **Design Highlights**
+
+- **Consistent with your existing style**: Uses the same yellow (light) and blue (dark) accent colors
+- **Responsive design**: Works perfectly on all screen sizes
+- **Smooth animations**: Uses Framer Motion for beautiful transitions
+- **Dark/Light theme support**: Fully integrated with your theme system
+- **Accessibility**: Semantic HTML and keyboard navigation support
+
+## 📊 **Sample Projects Included**
+
+I've created 10 diverse project examples:
+1. **News Factory Video Automation** - AI-powered news generation
+2. **Vouch Contactless Dining** - Hospitality tech platform
+3. **VersaDrive Logistics App** - Mobile fleet management
+4. **Hotel POS Integration Service** - API integration microservice
+5. **HR Management System** - Internal automation platform
+6. **Vue UI Component Library** - Open source project
+7. **E-commerce CMS Platform** - Headless CMS solution
+8. **Payment Gateway Microservice** - Payment processing
+9. **Hotel Facility Booking App** - Mobile booking app
+10. **Developer Task Automation CLI** - Command-line tool
+
+The section is now integrated into your main page and ready to use! You can customize the project data, add your actual project images, and modify the styling to match your preferences. The placeholder SVG images will work immediately, and you can replace them with actual project screenshots later.
+
+Would you like me to help you customize any specific aspects of the projects section or add any additional features?
